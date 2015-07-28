@@ -4,6 +4,7 @@
 package com.lmiky.simplelogin.servlet;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2015年7月28日 上午10:57:36
  */
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = -3003866526179203823L;
+	private static final long serialVersionUID = -7840534075732907267L;
+	public static final String ENCODING = "UTF-8";
 
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
@@ -25,6 +27,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			setEncoding(request, response);
 			String loginName = request.getParameter("loginName");
 			String password = request.getParameter("password");
 			if(!"admin".equals(loginName)) {
@@ -39,6 +42,19 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 设置编码
+	 * @author lmiky
+	 * @date 2015年7月28日 下午12:24:14
+	 * @param request
+	 * @param response
+	 * @throws UnsupportedEncodingException
+	 */
+	protected void setEncoding(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
+		request.setCharacterEncoding(ENCODING);
+		request.setCharacterEncoding(ENCODING);
+	}
+	
 	/**
 	 * 检查输入格式
 	 * @author lmiky
