@@ -30,8 +30,12 @@ public class LoginServlet extends HttpServlet {
 			setEncoding(request, response);
 			String loginName = request.getParameter("loginName");
 			String password = request.getParameter("password");
-			if(!"admin".equals(loginName)) {
+			if(!checkValue(request, response, loginName)) {
+				handlerError(request, response, "用户名格式错误!");
+			} else if(!"admin".equals(loginName)) {
 				handlerError(request, response, "用户名错误!");
+			} else if(!checkValue(request, response, password)) {
+				handlerError(request, response, "用户名密码错误!");
 			} else if(!"admin".equals(password)) {
 				handlerError(request, response, "密码错误!");
 			} else {
@@ -50,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 	 * @param response
 	 * @throws UnsupportedEncodingException
 	 */
-	protected void setEncoding(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
+	private void setEncoding(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
 		request.setCharacterEncoding(ENCODING);
 		response.setCharacterEncoding(ENCODING);
 	}
@@ -66,8 +70,8 @@ public class LoginServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected boolean checkValue(HttpServletRequest request, HttpServletResponse response, String value) throws ServletException, IOException {
-		String regex = "[A-Za-z0-9]*";
+	private boolean checkValue(HttpServletRequest request, HttpServletResponse response, String value) throws ServletException, IOException {
+		String regex = "[A-Za-z0-9]+";
 		return value.matches(regex);
 	}
 	

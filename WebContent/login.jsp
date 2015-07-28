@@ -56,6 +56,7 @@
 	</body>
 	<script type="text/javascript">
 		function login() {
+			$('.errorDiv').text('');
 			var loginName = $('input[name="loginName"]').val();
 			var password = $('input[name="password"]').val();
 			if(loginName == '') {
