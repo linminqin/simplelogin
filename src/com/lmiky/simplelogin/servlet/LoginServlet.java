@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void setEncoding(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
 		request.setCharacterEncoding(ENCODING);
-		request.setCharacterEncoding(ENCODING);
+		response.setCharacterEncoding(ENCODING);
 	}
 	
 	/**
